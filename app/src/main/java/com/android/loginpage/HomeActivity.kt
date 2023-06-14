@@ -17,6 +17,7 @@ class HomeActivity : AppCompatActivity() {
         binding.btnLogout.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
+            //This Is A Comment
         }
     }
 }
