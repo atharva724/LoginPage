@@ -9,6 +9,20 @@
     android:padding="20dp"
     tools:context=".LoginActivity">
 
+    <ImageView
+        android:id="@+id/img_illustration_started2"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:contentDescription="@string/illustration_img"
+        android:src="@drawable/illustration_started"
+        app:layout_constraintBottom_toTopOf="@+id/btn_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_password"
+        app:layout_constraintVertical_bias="0.156" />
+
     <TextView
         android:id="@+id/tv_login_title"
         style="@style/Title"

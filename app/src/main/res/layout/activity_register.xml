@@ -9,6 +9,18 @@
     android:padding="20dp"
     tools:context=".RegisterActivity">
 
+    <ImageView
+        android:id="@+id/img_illustration_started3"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:contentDescription="@string/illustration_img"
+        android:src="@drawable/illustration_started"
+        app:layout_constraintBottom_toTopOf="@+id/btn_register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_confirm_password"
+        app:layout_constraintVertical_bias="0.691" />
+
     <TextView
         android:id="@+id/tv_register_title"
         style="@style/Title"
@@ -86,7 +98,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:hint="@string/login_password"
+        android:hint="Your Password (MIin 6 Characters)"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_email"
