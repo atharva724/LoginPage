@@ -49,6 +49,7 @@ class LoginActivity : AppCompatActivity() {
                     writeToFirebase(email, password)
                     Toast.makeText(this, "Login success", Toast.LENGTH_LONG).show()
                     startActivity(Intent(this, HomeActivity::class.java))
+                    finish()
                 } else {
                     Toast.makeText(this, "Login failed", Toast.LENGTH_LONG).show()
                 }

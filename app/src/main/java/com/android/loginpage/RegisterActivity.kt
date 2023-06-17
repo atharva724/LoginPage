@@ -58,6 +58,7 @@ class RegisterActivity : AppCompatActivity() {
                     val user = auth.currentUser
                     updateUI(user)
                     startActivity(Intent(this, HomeActivity::class.java))
+                    finish()
                 } else {
                     // If sign in fails, display a message to the user.
 
