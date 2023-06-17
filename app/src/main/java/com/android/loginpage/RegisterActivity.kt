@@ -8,6 +8,10 @@ import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -15,31 +19,34 @@ import com.google.firebase.ktx.Firebase
 
 class RegisterActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityRegisterBinding
-    private lateinit var auth : FirebaseAuth
+    private lateinit var auth: FirebaseAuth
 
+    private lateinit var emailEditText: EditText
+    private lateinit var passwordEditText: EditText
+    private lateinit var name: EditText
+    private lateinit var btnRegister: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        val namebox=findViewById<TextInputLayout>(R.id.et_fullname)
-        val emailbox=findViewById<TextInputLayout>(R.id.et_email)
-        val passwordbox=findViewById<TextInputLayout>(R.id.et_fullname)
+        setContentView(R.layout.activity_register)
 
+        // Initialize Firebase Auth
+        auth = FirebaseAuth.getInstance()
 
-        binding.btnRegister.setOnClickListener {
-            val namebox=findViewById<TextInputLayout>(R.id.et_fullname)
-            val emailbox=findViewById<TextInputLayout>(R.id.et_email)
-            val passwordbox=findViewById<TextInputLayout>(R.id.et_fullname)
+        // Find views by their IDs
+        emailEditText = findViewById(R.id.et_email)
+        passwordEditText = findViewById(R.id.et_password)
+        name=findViewById(R.id.et_fullname)
+        btnRegister= findViewById(R.id.btn_register)
 
-            createAccount(emailbox.editText?.text.toString(),passwordbox.editText?.text.toString())
+       btnRegister.setOnClickListener {
+          createAccount(emailEditText.text.toString(), passwordEditText.text.toString())
         }
-        binding.tvHaveAccount.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        }
-
+//       tvHaveAccount.setOnClickListener {
+//            startActivity(Intent(this, LoginActivity::class.java))
+//            finish()
+//        }
     }
+
 
     private fun createAccount(email: String, password: String) {
         // [START create_user_with_email]
@@ -47,9 +54,10 @@ class RegisterActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
+                    Toast.makeText(this,"Success",Toast.LENGTH_LONG).show()
                     val user = auth.currentUser
                     updateUI(user)
-                    startActivity(Intent(this, RegisterActivity::class.java))
+                    startActivity(Intent(this, HomeActivity::class.java))
                 } else {
                     // If sign in fails, display a message to the user.
 
@@ -58,18 +66,10 @@ class RegisterActivity : AppCompatActivity() {
             }
 
     }
+
     fun updateUI(user: FirebaseUser?) {
 
     }
-
-fun registerbuttonclick(){
-    val namebox=findViewById<TextInputLayout>(R.id.et_fullname)
-    val emailbox=findViewById<TextInputLayout>(R.id.et_email)
-    val passwordbox=findViewById<TextInputLayout>(R.id.et_fullname)
-
-    createAccount(emailbox.editText?.text.toString(),passwordbox.editText?.text.toString())
-
-}
 
 
 }

@@ -18,6 +18,9 @@ class HomeActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
             //This Is A Comment
+
         }
+
+
     }
 }
