@@ -8,6 +8,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -21,14 +22,23 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val namebox=findViewById<TextInputLayout>(R.id.et_fullname)
+        val emailbox=findViewById<TextInputLayout>(R.id.et_email)
+        val passwordbox=findViewById<TextInputLayout>(R.id.et_fullname)
+
 
         binding.btnRegister.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
+            val namebox=findViewById<TextInputLayout>(R.id.et_fullname)
+            val emailbox=findViewById<TextInputLayout>(R.id.et_email)
+            val passwordbox=findViewById<TextInputLayout>(R.id.et_fullname)
+
+            createAccount(emailbox.editText?.text.toString(),passwordbox.editText?.text.toString())
         }
         binding.tvHaveAccount.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
+
     }
 
     private fun createAccount(email: String, password: String) {
@@ -39,6 +49,7 @@ class RegisterActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     val user = auth.currentUser
                     updateUI(user)
+                    startActivity(Intent(this, RegisterActivity::class.java))
                 } else {
                     // If sign in fails, display a message to the user.
 
@@ -48,9 +59,17 @@ class RegisterActivity : AppCompatActivity() {
 
     }
     fun updateUI(user: FirebaseUser?) {
+
     }
 
+fun registerbuttonclick(){
+    val namebox=findViewById<TextInputLayout>(R.id.et_fullname)
+    val emailbox=findViewById<TextInputLayout>(R.id.et_email)
+    val passwordbox=findViewById<TextInputLayout>(R.id.et_fullname)
 
+    createAccount(emailbox.editText?.text.toString(),passwordbox.editText?.text.toString())
+
+}
 
 
 }
